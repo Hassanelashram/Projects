@@ -1,0 +1,21 @@
+@import "bootstrap/scss/bootstrap";
+
+header {
+  height: 500px;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-custom{
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(10,10,10,0.2);
+}
+
+.btn-red{
+  background-color: red;
+  color: white;
+  width: 100%;
+}
