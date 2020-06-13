@@ -2,20 +2,29 @@
   <div class="row">
     <h2 class="artistName" class="col-12"><%= @lyric.artist %></h2>
     <p class="col-12"><%= @lyric.song %></p>
-    <div class="col-6">
+    <div class="col-sm-12 col-lg-6">
       <div class="lyric-display">
         <%= @lyric.lyrics %>
       </div>
     </div>
     <div class="col">
-      <img src="https://images.unsplash.com/photo-1538402074774-8e624f3f7e5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80" alt="">
+      <img class="show-img" src="https://images.unsplash.com/photo-1538402074774-8e624f3f7e5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80" alt="">
     </div>
-
+  </div>
+  <div class="row my-5">
+    <div class="col-12">
+      <h2>Fetch another song:</h2>
+    </div>
+    <div class="col-sm-12 col-lg-6 ">
+      <%= render 'form' %>
+      <p class="text-center">Or</p>
+      <a href="/lyrics" class="btn btn-red">Go to Index of lyrics</a>
+    </div>
   </div>
 </div>
 
 
-<script>
+<!-- <script>
   const artist = document.querySelector('.artistName').innerText;
   const img = document.querySelector('img');
 fetch('https://api.pexels.com/v1/search?query=' + artist, { headers: {
@@ -28,4 +37,4 @@ fetch('https://api.pexels.com/v1/search?query=' + artist, { headers: {
   const url = data.photos[0].url;
   img.setAttribute('src', url)
 })
-</script>
+</script> -->

@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto my-5">
+      <div class="row">
+        <div class="col-12 mx-auto">
+          <input placeholder="enter a city" id="city-input" type="text" class="form-control">
+        </div>
+        <div class="col-12">
+          <div class="card mx-auto">
+            <div class="card-body" id="card">
+              <h2 id="title"></h2>
+              <h4 id="date"></h4>
+              <p id="status"></p>
+              <img src="" alt="" id="weathericon">
+              <h2 id="temp"></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const title = document.getElementById('title');
+const status = document.getElementById('status');
+const icon = document.getElementById('weathericon');
+const temp = document.getElementById('temp');
+const input = document.getElementById('city-input');
+const date = document.getElementById('date');
+
+const dateConverter = (data) => {
+  const today = new Date();
+  const localOffset = data.timezone + today.getTimezoneOffset() * 60;
+  const localDate = new Date(today.setUTCSeconds(localOffset));
+  const options = {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric'
+  };
+  const formattedDate = localDate.toLocaleDateString("en-US", options);
+  const dateCorrected = formattedDate;
+  return dateCorrected;
+};
+
+const fetchApi = () => {
+    const weatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${input.value}&units=metric&appid=7f3376673b0c42feffdf9b1d57f8047d`
+    fetch(weatherUrl)
+    .then(response => response.json())
+    .then((data) => {
+        const dateConverted = dateConverter(data);
+        date.innerText = dateConverted;
+        title.innerText = data.name
+        status.innerText = data.weather[0].description
+        const iconUrl = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`
+        icon.setAttribute('src', iconUrl);
+        temp.innerText = Math.round(data.main.temp)
+    })
+}
+
+
+input.addEventListener('keyup', (e) => {
+    e.preventDefault();
+    fetchApi();
+})
+</script>

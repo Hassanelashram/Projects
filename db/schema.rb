@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_06_09_195409) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "lyrics", force: :cascade do |t|
     t.string "artist"
     t.string "song"
