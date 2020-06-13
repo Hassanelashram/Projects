@@ -1,3 +1,31 @@
-<%= @lyric.artist %>
-<%= @lyric.song %>
-<%= @lyric.lyrics %>
+<div class="container">
+  <div class="row">
+    <h2 class="artistName" class="col-12"><%= @lyric.artist %></h2>
+    <p class="col-12"><%= @lyric.song %></p>
+    <div class="col-6">
+      <div class="lyric-display">
+        <%= @lyric.lyrics %>
+      </div>
+    </div>
+    <div class="col">
+      <img src="https://images.unsplash.com/photo-1538402074774-8e624f3f7e5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80" alt="">
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+  const artist = document.querySelector('.artistName').innerText;
+  const img = document.querySelector('img');
+fetch('https://api.pexels.com/v1/search?query=' + artist, { headers: {
+    'Authorization': '563492ad6f91700001000001637ce3f7a6f64cc18204743ed47beb24',
+    "Content-Type": "application/json",
+    }
+})
+.then(response => response.json())
+.then((data) => {
+  const url = data.photos[0].url;
+  img.setAttribute('src', url)
+})
+</script>

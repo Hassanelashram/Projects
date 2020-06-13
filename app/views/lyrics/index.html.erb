@@ -2,32 +2,30 @@
 <div class="container bg-custom">
   <div class="row my-5">
     <div class="col-10 mx-auto ">
-       <%= simple_form_for(Lyric.new) do |f| %>
-        <%= f.input :artist, placeholder: 'Artist name' %>
-        <%= f.input :song, placeholder: 'Song name' %>
-        <%= f.hidden_field :lyrics %>
-        <%= f.submit 'Get Lyrics', class: 'btn btn-red' %>
-      <% end %>
+       <%= render 'form' %>
       <h4 style="color: white" class="text-center">or</h4>
-      <%= link_to 'Random pick', root_url, class: 'btn btn-red'  %>
+      <%= link_to 'Browse', root_url, class: 'btn btn-red'  %>
     </div>
   </div>
 </header>
 
- <!--  <div class="row">
-    <div class="col-12">
-      <form action="/show" class="form">
-        <input type="text" name="artist">
-        <input type="text" name="song">
-        <button type="submit">submit</button>
-      </form>
-    </div>
-  </div> -->
+<div class="container my-5">
+  <div class="row">
+    <h2 class="col-12">Most recent Fetches</h2>
+    <% @lyrics.each do |l| %>
+        <div class="col-4">
+          <div class="card">
+            <h3 ><%= link_to l.artist, l %></h3>
+            <p><%= l.song %></p>
+            <%= link_to 'View lyrics', l, class: 'btn btn-danger'  %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
   <div class="row">
     <div class="col-6">
-      <% @lyrics.each do |l| %>
-        <h3><%= link_to l.artist, l %> / <%= l.song %></h3>
-      <% end %>
+
     </div>
   </div>
 </div>

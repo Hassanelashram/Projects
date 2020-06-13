@@ -3,7 +3,7 @@ class LyricsController < ApplicationController
   require 'open-uri'
 
   def index
-    @lyrics = Lyric.all
+    @lyrics = Lyric.all.limit(12).order(created_at: :desc)
   end
 
   def show

@@ -1,0 +1,6 @@
+<%= simple_form_for(Lyric.new) do |f| %>
+  <%= f.input :artist, placeholder: 'Michael Jackson' %>
+    <%= f.input :song, placeholder: 'Beat it' %>
+    <%= f.hidden_field :lyrics %>
+    <%= f.submit 'Fetch lyrics', class: 'btn btn-red' %>
+<% end %>
